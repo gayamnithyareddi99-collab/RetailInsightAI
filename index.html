@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetailInsight AI – Predict. Optimise. Protect.</title>
+
+<style>
+/* ================= BRAND SYSTEM ================= */
+:root{
+  --navy:#071c2f;
+  --blue:#0b4f6c;
+  --teal:#4fd1c5;
+  --accent:#6fb1d6;
+  --glass:rgba(255,255,255,0.08);
+  --white:#ffffff;
+  --muted:#9fb6c6;
+}
+
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+/* ================= NAV ================= */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(7,28,47,.75);
+  backdrop-filter:blur(10px);
+  z-index:999;
+}
+.logo{
+  font-size:18px;
+  font-weight:600;
+}
+.logo span:last-child{color:var(--teal)}
+nav a{
+  color:#dbeef7;
+  margin-left:22px;
+  font-size:14px;
+  text-decoration:none;
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:140px 6% 120px;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* ===== DARK WHITE BOX GRID ===== */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(245, 243, 243, 0.753) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255, 255, 255) 1px, transparent 1px);
+  background-size:48px 48px;
+  opacity:.35;
+  z-index:0;
+}
+/* ===== TEAL BREATHING + FLOATING LIGHT ===== */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:-10%;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(94, 252, 236, 0.384),
+      rgba(24, 90, 151, 0.616) 70%
+    );
+  animation:tealBreathMove 1.5s ease-in-out infinite;
+  z-index:1;
+  filter:blur(20px);
+}
+
+/* ===== PREMIUM ON / OFF + FLOAT ===== */
+@keyframes tealBreathMove{
+  0%{
+    opacity:0.25;
+    transform:translate(0,0) scale(1);
+  }
+  25%{
+    opacity:0.45;
+    transform:translate(-12px,-18px) scale(1.02);
+  }
+  50%{
+    opacity:0.65;
+    transform:translate(14px,12px) scale(1.05);
+  }
+  75%{
+    opacity:0.4;
+    transform:translate(-8px,16px) scale(1.02);
+  }
+  100%{
+    opacity:0.25;
+    transform:translate(0,0) scale(1);
+  }
+}
+
+/* ===== 3D SWIRL ===== */
+.swirl{
+  position:absolute;
+  width:680px;
+  height:680px;
+  border-radius:50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      #6fb1d6,
+      #4fd1c5,
+      #0b4f6c,
+      #6fb1d6
+    );
+  filter:blur(44px);
+  opacity:.55;
+  animation:spin 18s linear infinite;
+  z-index:1;
+}
+.swirl::after{
+  content:"";
+  position:absolute;
+  inset:90px;
+  border-radius:50%;
+  background:
+    conic-gradient(
+      from 180deg,
+      #4fd1c5,
+      #6fb1d6,
+      #0b4f6c,
+      #4fd1c5
+    );
+  filter:blur(60px);
+  opacity:.85;
+}
+
+@keyframes spin{
+  from{transform:rotate(0deg) scale(1)}
+  to{transform:rotate(360deg) scale(1.08)}
+}
+
+/* ================= HERO CONTENT ================= */
+.hero-inner{
+  max-width:1000px;
+  position:relative;
+  z-index:2;
+  animation:fadeUp 1s ease-out;
+}
+
+.hero-tag{
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--teal);
+  margin-bottom:22px;
+  font-weight:700;
+}
+
+.hero h1{
+  font-size:64px;
+  line-height:1.12;
+  margin-bottom:26px;
+  font-weight:700;
+}
+.hero h1 span{color:var(--teal)}
+
+.hero p{
+  font-size:19px;
+  max-width:860px;
+  margin:0 auto 44px;
+  color:var(--muted);
+}
+
+/* CTA */
+.hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+}
+.hero-actions button{
+  padding:16px 46px;
+  font-size:15px;
+  font-weight:700;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  transition:.25s ease;
+}
+.primary{
+  background:var(--teal);
+  color:#031927;
+  box-shadow:0 18px 50px rgba(79,209,197,.45);
+}
+.primary:hover{transform:translateY(-2px)}
+.outline{
+  background:transparent;
+  border:2px solid #fff;
+  color:#fff;
+}
+.outline:hover{
+  background:#fff;
+  color:#031927;
+}
+/* ================= PRO PREMIUM ANIMATIONS ================= */
+
+/* CINEMATIC FADE-UP (SLOW + SMOOTH) */
+@keyframes fadeUp{
+  0%{
+    opacity:0;
+    transform:translateY(48px) scale(0.96);
+    filter:blur(6px);
+  }
+  60%{
+    opacity:0.85;
+    transform:translateY(12px) scale(0.99);
+    filter:blur(1px);
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+  }
+}
+
+/* SOFT FLOATING (USED FOR PREMIUM FEEL) */
+@keyframes softFloat{
+  0%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+  100%{
+    transform:translateY(0);
+  }
+}
+
+/* APPLY FLOAT TO HERO CONTENT */
+.hero-inner{
+  animation:
+    fadeUp 1.2s cubic-bezier(.22,1,.36,1),
+    softFloat 6s ease-in-out infinite;
+}
+
+/* SWIRL DEPTH BREATHING */
+.swirl{
+  animation:
+    spin 22s linear infinite,
+    swirlBreath 6s ease-in-out infinite;
+}
+
+@keyframes swirlBreath{
+  0%{
+    opacity:0.45;
+    transform:scale(1);
+  }
+  50%{
+    opacity:0.7;
+    transform:scale(1.08);
+  }
+  100%{
+    opacity:0.45;
+    transform:scale(1);
+  }
+}
+
+/* ================= MOBILE PREMIUM ================= */
+@media(max-width:900px){
+
+  .hero{
+    padding:120px 6% 100px;
+  }
+
+  .hero h1{
+    font-size:40px;
+    line-height:1.18;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .hero-actions button{
+    width:100%;
+  }
+
+  /* SMALLER, CLEANER SWIRL */
+  .swirl{
+    width:380px;
+    height:380px;
+    filter:blur(38px);
+  }
+}
+
+/* ================= MOTION SAFETY ================= */
+/* RESPECTS USERS WHO DISABLE ANIMATIONS */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">RetailInsight<span>AI</span></div>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Platform</a>
+    <a href="#">Use Cases</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- BACKGROUND -->
+  <div class="swirl"></div>
+
+  <div class="hero-inner">
+
+    <div class="hero-tag"><strong>AI-POWERED RETAIL INTELLIGENCE · UNITED KINGDOM</strong></div>
+
+    <h1>
+      Predict waste before it happens.<br>
+      <span>Protect margins with intelligent AI.</span>
+    </h1>
+
+    <p>
+      <strong>RetailInsight AI enables retailers to move from reactive decisions
+      to predictive control. Forecast food waste risk, optimise pricing,
+      and unlock sustainable profitability securely and compliantly.</strong>
+    </p>
+
+    <div class="hero-actions">
+      <button class="primary">Request Demo</button>
+      <button class="outline">Explore Platform</button>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
+<!-- ================= ABOUT + FOUNDER ================= -->
+<style>
+/* ===== ABOUT SECTION BASE ===== */
+.about-founder{
+  padding:120px 8%;
+  background:linear-gradient(180deg,#f4f9fc,#ffffff);
+}
+
+.about-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:70px;
+  align-items:flex-start;
+}
+
+/* ===== LEFT : ABOUT ===== */
+.about-badge{
+  display:inline-block;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  color:#1f6f8b;
+  margin-bottom:18px;
+}
+
+.about-content h2{
+  font-size:42px;
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:22px;
+  color:#0f172a;
+}
+
+.about-content h2 span{
+  color:#1f6f8b;
+}
+
+.about-content p{
+  font-size:17.5px;
+  line-height:1.75;
+  color:#f6faff;
+  margin-bottom:16px;
+}
+
+/* VALUE STRIP */
+.about-values{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:26px;
+}
+
+.about-value{
+  background:#ffffff;
+  padding:18px;
+  border-radius:10px;
+  box-shadow:0 12px 30px rgba(15,23,42,0.08);
+  border-left:4px solid #1f6f8b;
+}
+
+.about-value strong{
+  display:block;
+  font-size:18px;
+  margin-bottom:6px;
+  color:#0f172a;
+}
+
+.about-value span{
+  font-size:14px;
+  color:#64748b;
+}
+
+/* ===== RIGHT : FOUNDER ===== */
+.founder-card{
+  background:#0b4f6c;
+  color:#ffffff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(11,79,108,0.35);
+}
+
+.founder-header{
+  padding:28px;
+  background:linear-gradient(135deg,#0b4f6c,#1f6f8b);
+}
+
+.founder-header h3{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+.founder-header span{
+  font-size:14px;
+  color:#dbeef7;
+}
+
+.founder-body{
+  padding:30px;
+  background:#ffffff;
+  color:#0f172a;
+}
+
+.founder-body h4{
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.founder-role{
+  font-size:14px;
+  font-weight:600;
+  color:#1f6f8b;
+  margin-bottom:18px;
+}
+
+.founder-body p{
+  font-size:16.5px;
+  line-height:1.7;
+  color:#475569;
+  margin-bottom:14px;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+  .about-founder{
+    padding:90px 6%;
+  }
+
+  .about-wrap{
+    grid-template-columns:1fr;
+    gap:50px;
+  }
+
+  .about-content h2{
+    font-size:34px;
+  }
+
+  .about-values{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
+<section class="about-founder" id="about">
+  <div class="about-wrap">
+
+    <!-- ABOUT COMPANY -->
+    <div class="about-content">
+      <span class="about-badge">ABOUT RETAILINSIGHT AI</span>
+
+      <h2>
+        Building <span>Predictive Retail Intelligence</span><br>
+        for a More Sustainable Future
+      </h2>
+
+      <p>
+        RetailInsight AI Limited is a UK-based artificial intelligence platform
+        created to help retailers move from reactive decision-making to
+        predictive, data-driven operations.
+      </p>
+
+      <p>
+        By forecasting food waste risk, optimising pricing, and enabling
+        compliant donation actions, the platform helps retailers protect
+        margins while reducing environmental impact.
+      </p>
+
+      <p>
+        Designed with privacy, explainability, and regulatory alignment at its
+        core, RetailInsight AI integrates seamlessly into existing retail
+        workflows without operational disruption.
+      </p>
+
+      <div class="about-values">
+        <div class="about-value">
+          <strong>Predictive</strong>
+          <span>Anticipate waste & demand before losses occur</span>
+        </div>
+        <div class="about-value">
+          <strong>Compliant</strong>
+          <span>Aligned with UK retail & food safety standards</span>
+        </div>
+        <div class="about-value">
+          <strong>Scalable</strong>
+          <span>Built to grow across stores and regions</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOUNDER -->
+    <div class="founder-card">
+      <div class="founder-header">
+        <h3>Founder</h3>
+        <span>RetailInsight AI Limited</span>
+      </div>
+
+      <div class="founder-body">
+        <h4>Mayank Patel</h4>
+        <div class="founder-role">
+          Founder · Retail Intelligence & Data Strategy
+        </div>
+
+        <p>
+          Mayank brings hands-on experience across retail operations,
+          market analysis, and data-driven decision-making within
+          the UK business environment.
+        </p>
+
+        <p>
+          His exposure to inventory management, consumer behaviour,
+          and waste-related inefficiencies inspired the creation of
+          RetailInsight AI — a practical, commercially viable platform
+          focused on real retail challenges.
+        </p>
+
+        <p>
+          His vision is to make advanced AI accessible, responsible,
+          and valuable for everyday retail operations — balancing
+          profitability, sustainability, and compliance.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+console.log("About + Founder section loaded (RetailInsight AI)");
+</script>
+<!-- ================= BUSINESS OVERVIEW ================= -->
+<style>
+/* ===== SECTION BASE ===== */
+.business-overview{
+  padding:120px 8%;
+  background:#f8fbfe;
+}
+
+.bo-wrap{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* HEADER */
+.bo-header{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.bo-tag{
+  display:inline-block;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  color:#1f6f8b;
+  margin-bottom:16px;
+}
+
+.bo-header h2{
+  font-size:42px;
+  font-weight:800;
+  color:#0f172a;
+  line-height:1.2;
+  margin-bottom:18px;
+}
+
+.bo-header h2 span{
+  color:#1f6f8b;
+}
+
+.bo-header p{
+  max-width:820px;
+  margin:auto;
+  font-size:18px;
+  line-height:1.75;
+  color:#475569;
+}
+
+/* GRID */
+.bo-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:28px;
+}
+
+/* CARD */
+.bo-card{
+  background:#ffffff;
+  padding:34px 30px;
+  border-radius:14px;
+  box-shadow:0 20px 48px rgba(15,23,42,0.08);
+  position:relative;
+  transition:0.3s ease;
+}
+
+.bo-card:hover{
+  transform:translateY(-6px);
+}
+
+/* TOP ACCENT */
+.bo-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:5px;
+  background:linear-gradient(90deg,#1f6f8b,#6fb1d6);
+  border-radius:14px 14px 0 0;
+}
+
+/* ICON */
+.bo-icon{
+  font-size:28px;
+  margin-bottom:16px;
+  color:#1f6f8b;
+}
+
+/* TITLE */
+.bo-card h3{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:12px;
+  color:#0f172a;
+}
+
+/* TEXT */
+.bo-card p{
+  font-size:16.5px;
+  line-height:1.7;
+  color:#475569;
+}
+
+/* ===== HIGHLIGHT STRIP ===== */
+.bo-highlight{
+  margin-top:70px;
+  background:linear-gradient(135deg,#0b4f6c,#1f6f8b);
+  color:#ffffff;
+  padding:46px;
+  border-radius:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:36px;
+  text-align:center;
+}
+
+.bo-highlight strong{
+  font-size:32px;
+  display:block;
+  margin-bottom:6px;
+}
+
+.bo-highlight span{
+  font-size:15px;
+  color:#dbeef7;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+  .business-overview{
+    padding:90px 6%;
+  }
+
+  .bo-header h2{
+    font-size:34px;
+  }
+
+  .bo-grid{
+    grid-template-columns:1fr;
+  }
+
+  .bo-highlight{
+    grid-template-columns:1fr;
+    gap:26px;
+    padding:36px 28px;
+  }
+}
+</style>
+
+<section class="business-overview" id="overview">
+  <div class="bo-wrap">
+
+    <!-- HEADER -->
+    <div class="bo-header">
+      <span class="bo-tag">BUSINESS OVERVIEW</span>
+      <h2>
+        Transforming Retail Operations with<br>
+        <span>Predictive AI Intelligence</span>
+      </h2>
+      <p>
+        RetailInsight AI Limited is building a next-generation retail intelligence
+        platform that helps UK retailers reduce food waste, protect margins,
+        and make proactive operational decisions using privacy-first AI.
+      </p>
+    </div>
+
+    <!-- GRID -->
+    <div class="bo-grid">
+
+      <div class="bo-card">
+        <div class="bo-icon">📉</div>
+        <h3>The Problem</h3>
+        <p>
+          UK retailers lose billions annually due to food waste,
+          inaccurate demand forecasting, rigid pricing,
+          and late decision-making at store level.
+        </p>
+      </div>
+
+      <div class="bo-card">
+        <div class="bo-icon">🤖</div>
+        <h3>The Solution</h3>
+        <p>
+          RetailInsight AI predicts waste risk up to 72 hours in advance
+          and recommends pricing, replenishment, and donation actions
+          before value is lost.
+        </p>
+      </div>
+
+      <div class="bo-card">
+        <div class="bo-icon">🛡️</div>
+        <h3>Privacy & Compliance</h3>
+        <p>
+          Built using federated learning and explainable models,
+          the platform protects sensitive retail data
+          while aligning with UK regulatory expectations.
+        </p>
+      </div>
+
+      <div class="bo-card">
+        <div class="bo-icon">📈</div>
+        <h3>Commercial Impact</h3>
+        <p>
+          Retailers benefit from reduced waste,
+          improved margins, operational efficiency,
+          and a scalable AI platform ready for multi-store rollout.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+console.log("Business Overview section loaded – RetailInsight AI");
+</script>
+
+<!-- ================= WHY RETAILINSIGHT AI ================= -->
+<style>
+.why-ai{
+  padding:120px 8%;
+  background:#f8fbfd;
+}
+
+.why-ai-wrap{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* HEADER */
+.why-ai-head{
+  max-width:760px;
+  margin-bottom:70px;
+}
+
+.why-ai-head span{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  color:#1f6f8b;
+  display:inline-block;
+  margin-bottom:14px;
+}
+
+.why-ai-head h2{
+  font-size:44px;
+  font-weight:900;
+  line-height:1.2;
+  color:#0f172a;
+}
+
+.why-ai-head h2 span{
+  color:#1f6f8b;
+}
+
+.why-ai-head p{
+  font-size:18px;
+  line-height:1.75;
+  color:#475569;
+  margin-top:18px;
+}
+
+/* GRID */
+.why-ai-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:36px;
+}
+
+/* CARD */
+.why-card{
+  background:#ffffff;
+  padding:36px;
+  border-radius:18px;
+  box-shadow:0 18px 44px rgba(2,6,23,0.08);
+  position:relative;
+}
+
+.why-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg,#1f6f8b,#6fb1d6);
+  border-radius:18px 18px 0 0;
+}
+
+.why-card h3{
+  font-size:22px;
+  font-weight:800;
+  color:#0f172a;
+  margin-bottom:12px;
+}
+
+.why-card p{
+  font-size:16.5px;
+  line-height:1.65;
+  color:#475569;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .why-ai{
+    padding:90px 6%;
+  }
+
+  .why-ai-head h2{
+    font-size:34px;
+  }
+
+  .why-ai-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+}
+</style>
+
+<section class="why-ai" id="why">
+  <div class="why-ai-wrap">
+
+    <!-- HEADER -->
+    <div class="why-ai-head">
+      <span>WHY RETAILINSIGHT AI</span>
+      <h2>
+        Designed for Retail Reality.<br>
+        <span>Built for Predictive Advantage.</span>
+      </h2>
+      <p>
+        RetailInsight AI exists to solve one critical problem in UK retail —
+        losses caused by late decisions. Our platform transforms uncertainty
+        into early, confident action.
+      </p>
+    </div>
+
+    <!-- CARDS -->
+    <div class="why-ai-grid">
+
+      <div class="why-card">
+        <h3>Predict Before Loss Occurs</h3>
+        <p>
+          Our AI forecasts waste and margin risk up to 72 hours in advance,
+          enabling proactive pricing and inventory decisions rather than
+          reactive discounting.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <h3>Retail-Native Intelligence</h3>
+        <p>
+          Built specifically for food and grocery retail — accounting for
+          expiry cycles, demand volatility, and store-level behaviour.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <h3>Privacy & Compliance First</h3>
+        <p>
+          Federated learning ensures sensitive operational data remains secure,
+          compliant, and never centrally exposed.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+console.log("Why RetailInsight AI – premium model loaded");
+</script>
+<!-- ================= KEY BENEFITS ================= -->
+<style>
+.key-benefits{
+  padding:120px 8%;
+  background:#ffffff;
+}
+
+.key-benefits-wrap{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* HEADER */
+.key-benefits-head{
+  max-width:780px;
+  margin-bottom:70px;
+}
+
+.key-benefits-head span{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  color:#1f6f8b;
+  display:inline-block;
+  margin-bottom:14px;
+}
+
+.key-benefits-head h2{
+  font-size:44px;
+  font-weight:900;
+  line-height:1.2;
+  color:#0f172a;
+}
+
+.key-benefits-head h2 span{
+  color:#1f6f8b;
+}
+
+.key-benefits-head p{
+  font-size:18px;
+  line-height:1.75;
+  color:#475569;
+  margin-top:18px;
+}
+
+/* BENEFITS STACK */
+.benefits-stack{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:36px;
+}
+
+/* BENEFIT ITEM */
+.benefit-item{
+  background:#f8fbfd;
+  padding:34px 36px;
+  border-radius:18px;
+  position:relative;
+}
+
+.benefit-item::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:6px;
+  height:100%;
+  background:linear-gradient(180deg,#1f6f8b,#6fb1d6);
+  border-radius:18px 0 0 18px;
+}
+
+.benefit-item h3{
+  font-size:22px;
+  font-weight:800;
+  color:#0f172a;
+  margin-bottom:12px;
+}
+
+.benefit-item p{
+  font-size:16.6px;
+  line-height:1.65;
+  color:#475569;
+}
+
+/* HIGHLIGHT STRIP */
+.benefits-strip{
+  margin-top:80px;
+  background:linear-gradient(90deg,#0b4f6c,#1f6f8b);
+  padding:48px;
+  border-radius:22px;
+  color:#ffffff;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:36px;
+  text-align:center;
+}
+
+.strip-item strong{
+  font-size:36px;
+  display:block;
+  margin-bottom:6px;
+}
+
+.strip-item span{
+  font-size:14px;
+  letter-spacing:0.4px;
+  opacity:0.9;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .key-benefits{
+    padding:90px 6%;
+  }
+
+  .key-benefits-head h2{
+    font-size:34px;
+  }
+
+  .benefits-stack{
+    grid-template-columns:1fr;
+  }
+
+  .benefits-strip{
+    grid-template-columns:1fr;
+    gap:26px;
+    padding:36px;
+  }
+}
+</style>
+
+<section class="key-benefits" id="benefits">
+  <div class="key-benefits-wrap">
+
+    <!-- HEADER -->
+    <div class="key-benefits-head">
+      <span>KEY BENEFITS</span>
+      <h2>
+        Tangible Impact for Retailers.<br>
+        <span>Real Value from AI.</span>
+      </h2>
+      <p>
+        RetailInsight AI delivers measurable commercial and operational
+        benefits by enabling retailers to act early, protect margins,
+        and operate with confidence.
+      </p>
+    </div>
+
+    <!-- BENEFITS -->
+    <div class="benefits-stack">
+
+      <div class="benefit-item">
+        <h3>Reduced Food Waste</h3>
+        <p>
+          Predictive models identify high-risk products in advance,
+          allowing retailers to reduce spoilage and expiry-driven losses
+          before they occur.
+        </p>
+      </div>
+
+      <div class="benefit-item">
+        <h3>Margin Protection</h3>
+        <p>
+          Smart pricing recommendations balance sell-through and profit,
+          preventing unnecessary markdowns while maximising revenue.
+        </p>
+      </div>
+
+      <div class="benefit-item">
+        <h3>Faster Decision-Making</h3>
+        <p>
+          Clear, explainable insights replace manual analysis,
+          enabling teams to take confident actions in real time.
+        </p>
+      </div>
+
+      <div class="benefit-item">
+        <h3>Compliance & Trust</h3>
+        <p>
+          Designed for UK retail regulations, with privacy-first
+          federated learning ensuring full data security and compliance.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- IMPACT STRIP -->
+    <div class="benefits-strip">
+      <div class="strip-item">
+        <strong>72 hrs</strong>
+        <span>Waste risk visibility</span>
+      </div>
+      <div class="strip-item">
+        <strong>25%</strong>
+        <span>Potential waste reduction</span>
+      </div>
+      <div class="strip-item">
+        <strong>92%</strong>
+        <span>Forecast accuracy</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+console.log("Key Benefits – premium model loaded");
+</script>
+
+<!-- USE CASES -->
+<section id="usecases">
+  <div class="section-head">
+    <h2>Key Use Cases</h2>
+    <p>Clear applications delivering measurable commercial value.</p>
+  </div>
+
+  <div class="grid">
+    <div class="usecase">
+      <h3>Waste Risk Prediction</h3>
+      <p>Identify high-risk SKUs up to 72 hours before expiry.</p>
+    </div>
+    <div class="usecase">
+      <h3>Dynamic Pricing Optimisation</h3>
+      <p>Apply smart markdowns to protect margin and reduce loss.</p>
+    </div>
+    <div class="usecase">
+      <h3>Compliant Donations</h3>
+      <p>Automated, auditable donation decisions aligned with UK regulation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3D CONTACT SECTION ================= -->
+<style>
+/* ===== CONTACT BASE ===== */
+.contact{
+  position:relative;
+  padding:120px 8%;
+  background:#020617;
+  color:#ffffff;
+  overflow:hidden;
+}
+
+/* CANVAS */
+#contact3d{
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+
+/* OVERLAY */
+.contact::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,
+      rgba(111,177,214,0.25),
+      rgba(2,6,23,0.95) 70%
+    );
+  z-index:2;
+}
+
+/* CONTENT */
+.contact-inner{
+  position:relative;
+  z-index:3;
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:60px;
+  animation:fadeUp 1s ease-out;
+}
+
+/* LEFT */
+.contact-text span{
+  font-size:12px;
+  letter-spacing:2px;
+  font-weight:800;
+  color:#6fb1d6;
+}
+.contact-text h2{
+  font-size:44px;
+  line-height:1.2;
+  margin:20px 0;
+}
+.contact-text h2 span{
+  color:#6fb1d6;
+}
+.contact-text p{
+  font-size:17px;
+  line-height:1.75;
+  color:#e6f2f8;
+  max-width:520px;
+}
+
+/* CONTACT INFO */
+.contact-info{
+  margin-top:36px;
+}
+.info{
+  margin-bottom:18px;
+  font-size:15px;
+  color:#cfe9f6;
+}
+.info strong{
+  display:block;
+  font-size:13px;
+  letter-spacing:1px;
+  color:#6fb1d6;
+}
+
+/* RIGHT FORM */
+.contact-form{
+  background:rgba(255,255,255,0.08);
+  padding:42px;
+  border-radius:20px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 30px 80px rgba(0,0,0,0.45);
+}
+
+.contact-form h3{
+  font-size:22px;
+  margin-bottom:22px;
+  color:#ffffff;
+}
+
+/* INPUTS */
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:14px 16px;
+  margin-bottom:16px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:8px;
+  color:#ffffff;
+  font-size:14px;
+  outline:none;
+}
+.contact-form textarea{
+  resize:none;
+  height:120px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+  color:#cfe9f6;
+}
+
+/* BUTTON */
+.contact-form button{
+  width:100%;
+  padding:16px;
+  font-size:15px;
+  font-weight:800;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  background:linear-gradient(135deg,#6fb1d6,#9adbf5);
+  color:#020617;
+  box-shadow:0 16px 40px rgba(111,177,214,.55);
+  transition:.25s ease;
+}
+.contact-form button:hover{
+  transform:translateY(-2px);
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .contact-inner{
+    grid-template-columns:1fr;
+    gap:46px;
+  }
+  .contact-text h2{
+    font-size:34px;
+  }
+}
+</style>
+
+<section class="contact" id="contact">
+  <canvas id="contact3d"></canvas>
+
+  <div class="contact-inner">
+
+    <!-- LEFT CONTENT -->
+    <div class="contact-text">
+      <span>CONTACT RETAILINSIGHT AI</span>
+      <h2>
+        Let’s build smarter,<br>
+        <span>more sustainable retail together</span>
+      </h2>
+
+      <p>
+        Whether you’re a UK retailer, investor, or innovation partner,
+        RetailInsight AI would love to explore how predictive intelligence
+        can reduce waste, protect margins, and scale responsibly.
+      </p>
+
+      <div class="contact-info">
+        <div class="info">
+          <strong>LOCATION</strong>
+          United Kingdom
+        </div>
+        <div class="info">
+          <strong>FOCUS</strong>
+          Retail AI · Waste Reduction · Pricing Intelligence
+        </div>
+        <div class="info">
+          <strong>COMPLIANCE</strong>
+          Privacy-first · UK Retail & FSA aligned
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="contact-form">
+      <h3>Request a Demo / Discussion</h3>
+
+      <input type="text" placeholder="Full Name">
+      <input type="email" placeholder="Business Email">
+      <input type="text" placeholder="Company / Organisation">
+      <textarea placeholder="Tell us briefly about your retail challenge"></textarea>
+
+      <button>Send Enquiry</button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+/* ===== 3D CONTACT PARTICLES ===== */
+const c = document.getElementById("contact3d");
+const x = c.getContext("2d");
+
+function resizeContact(){
+  c.width = window.innerWidth;
+  c.height = document.querySelector(".contact").offsetHeight;
+}
+window.addEventListener("resize", resizeContact);
+resizeContact();
+
+const nodes = [];
+for(let i=0;i<180;i++){
+  nodes.push({
+    x:Math.random()*c.width,
+    y:Math.random()*c.height,
+    r:1.2 + Math.random()*2,
+    dx:(Math.random()-0.5)*0.4,
+    dy:(Math.random()-0.5)*0.4,
+    a:0.15 + Math.random()*0.4
+  });
+}
+
+function drawContact(){
+  x.clearRect(0,0,c.width,c.height);
+
+  nodes.forEach(n=>{
+    n.x += n.dx;
+    n.y += n.dy;
+
+    if(n.x<0||n.x>c.width) n.dx*=-1;
+    if(n.y<0||n.y>c.height) n.dy*=-1;
+
+    x.beginPath();
+    x.arc(n.x,n.y,n.r,0,Math.PI*2);
+    x.fillStyle=`rgba(111,177,214,${n.a})`;
+    x.shadowBlur=14;
+    x.shadowColor="#6fb1d6";
+    x.fill();
+  });
+
+  requestAnimationFrame(drawContact);
+}
+drawContact();
+</script>
+
+<footer>
+  © 2026 RetailInsight AI Limited · United Kingdom
+</footer>
+
+</body>
+</html>
