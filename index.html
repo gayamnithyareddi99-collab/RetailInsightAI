@@ -150,6 +150,103 @@ nav a{
   .hero-actions{flex-direction:column}
   .hero-actions button{width:100%}
 }
+/* ===== PRO-PREMIUM MOBILE EXPERIENCE ===== */
+@media (max-width: 900px){
+
+  /* SECTION SPACING */
+  .about-founder{
+    padding:72px 6% 64px;
+  }
+
+  /* LAYOUT */
+  .about-wrap{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:42px;
+  }
+
+  /* HEADINGS */
+  .about-content h2{
+    font-size:30px;
+    line-height:1.2;
+    letter-spacing:-0.3px;
+  }
+
+  .about-content p{
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  /* VALUES / CARDS */
+  .about-values{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .about-values .value{
+    padding:22px 20px;
+    border-radius:14px;
+  }
+
+  /* ===== 3D DOT VORTEX (MOBILE OPTIMISED) ===== */
+  #vortex{
+    width:100%;
+    height:100%;
+    opacity:0.55;
+    transform:scale(0.92);
+    filter:blur(0.5px);
+  }
+
+  /* REDUCE VISUAL NOISE FOR SMALL SCREENS */
+  .hero::before{
+    opacity:0.18;
+  }
+
+  .hero::after{
+    opacity:0.35;
+  }
+
+  /* BUTTONS */
+  .hero-actions{
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .hero-actions button{
+    width:100%;
+    padding:15px 0;
+    font-size:15px;
+  }
+}
+
+/* ===== ULTRA-SMALL DEVICES ===== */
+@media (max-width: 480px){
+
+  .about-founder{
+    padding:64px 5% 56px;
+  }
+
+  .about-content h2{
+    font-size:26px;
+  }
+
+  .about-content p{
+    font-size:15px;
+  }
+
+  #vortex{
+    transform:scale(0.85);
+    opacity:0.45;
+  }
+}
+
+/* ===== MOTION SAFETY (PREMIUM UX) ===== */
+@media (prefers-reduced-motion: reduce){
+  #vortex{
+    animation:none !important;
+  }
+}
 </style>
 </head>
 
@@ -251,6 +348,7 @@ function animate(){
 }
 
 animate();
+
 </script>
 
 </body>
