@@ -27,7 +27,22 @@ body{
   color:var(--white);
   overflow-x:hidden;
 }
-
+.primary{
+  display:inline-block;
+  background:#4fd1c5;
+  color:#021b2b;
+  padding:16px 46px;
+  font-size:15px;
+  font-weight:700;
+  border-radius:8px;
+  text-decoration:none;
+  cursor:pointer;
+  position:relative;
+  z-index:3;
+}
+.primary:hover{
+  transform:translateY(-2px);
+}
 /* NAV – PURE #4fd1c5 TEAL */
 nav{
   position:fixed;
@@ -514,7 +529,7 @@ nav a:hover::after{
 </div>
 </div>
 <section class="hero" id="home">
-  <!-- 3D DOT VORTEX BACKGROUND -->
+
   <canvas id="vortex"></canvas>
 
   <div class="hero-inner">
@@ -529,14 +544,19 @@ nav a:hover::after{
     </h1>
 
     <p>
-      <strong>RetailInsight AI empowers retailers to move from reactive decisions
-      to predictive control. Anticipate food waste risk, optimise pricing
-      in real time, and drive sustainable profitability across every store 
-      securely, accurately, and at scale.</strong>
+      <strong>
+        RetailInsight AI empowers retailers to move from reactive decisions
+        to predictive control. Anticipate food waste risk, optimise pricing
+        in real time, and drive sustainable profitability across every store
+        securely, accurately, and at scale.
+      </strong>
     </p>
 
     <div class="hero-actions">
-      <button class="primary">Request a Live Demo</button>
+  <a href="#contact" class="primary">
+    Request a Live Demo
+  </a>
+</div>
     </div>
 
   </div>
