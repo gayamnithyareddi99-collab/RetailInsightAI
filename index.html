@@ -425,31 +425,95 @@ nav a:hover::after{
     animation:none !important;
   }
 }
+/* FIXED NAV */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 8%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#4fd1c5;
+  z-index:1000;
+}
+
+/* DESKTOP LINKS */
+.nav-links{
+  display:flex;
+}
+
+.menu-btn{
+  display:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+/* MOBILE MENU PANEL */
+.mobile-menu{
+  position:fixed;
+  top:64px;
+  right:0;
+  width:100%;
+  background:#031927;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  padding:26px;
+  transform:translateY(-120%);
+  transition:transform .35s ease;
+  z-index:999;
+}
+
+.mobile-menu a{
+  color:#ffffff;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:600;
+}
+
+/* SHOW MOBILE */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .menu-btn{display:block;}
+}
+
+/* ACTIVE MENU */
+.mobile-menu.active{
+  transform:translateY(0);
+}
 </style>
 </head>
 
 <body>
 
-<nav>
+<nav class="navbar">
   <div class="logo">RetailInsight<span>AI</span></div>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Platform</a>
-    <a href="#">Use Cases</a>
-    <a href="#">Contact</a>
-  </div>
-</nav>
-<!-- MOBILE TOP BAR -->
-<div class="mobile-nav">
-  <div class="mobile-logo">RetailInsight<span>AI</span></div>
 
-  <button class="menu-btn" aria-label="Menu">
-    <!-- Gear Icon (CSS drawn) -->
+  <div class="nav-links">
+     <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#features">Features</a>
+  <a href="#overview">Overview</a>
+  <a href="#contact">Contact</a>
+  </div>
+
+  <!-- MOBILE MENU BUTTON -->
+  <button class="menu-btn" id="menuBtn" aria-label="Menu">
     <span class="gear"></span>
   </button>
-</div>
-<section class="hero">
+</nav>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#features">Features</a>
+  <a href="#overview">Overview</a>
+  <a href="#contact">Contact</a>
+</div>
+</div>
+<section class="hero" id="home">
   <!-- 3D DOT VORTEX BACKGROUND -->
   <canvas id="vortex"></canvas>
 
@@ -603,6 +667,9 @@ animate();
   padding:140px 8% 120px;
   background:#ffffff; /* WHITE BACKGROUND */
   overflow:hidden;
+}
+section {
+  scroll-margin-top: 90px; /* height of navbar */
 }
 
 /* TEAL CENTER GLOW */
@@ -926,7 +993,7 @@ animate();
 </style>
 <!-- ================= FEATURES : AI ORBIT MODEL ================= -->
 <!-- ================= FEATURES : AI PIPELINE MODEL ================= -->
-<section class="features-pipeline">
+<section class="features-pipeline" id="features">
 
   <!-- BACKGROUND GRID -->
   <div class="pipeline-grid"></div>
@@ -1168,161 +1235,14 @@ function animate(){
 }
 animate();
 </script>
-<!-- ================= BUSINESS OVERVIEW ================= -->
-<style>
-/* ===== SECTION BASE ===== */
-.business-overview{
-  padding:120px 8%;
-  background:#f8fbfe;
-}
+<!-- ================= BUSINESS OVERVIEW – AI FLOW MODEL ================= -->
+<section class="bo-flow" id="overview">
 
-.bo-wrap{
-  max-width:1200px;
-  margin:auto;
-}
-
-/* HEADER */
-.bo-header{
-  text-align:center;
-  margin-bottom:70px;
-}
-
-.bo-tag{
-  display:inline-block;
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:1.4px;
-  color:#1f6f8b;
-  margin-bottom:16px;
-}
-
-.bo-header h2{
-  font-size:42px;
-  font-weight:800;
-  color:#0f172a;
-  line-height:1.2;
-  margin-bottom:18px;
-}
-
-.bo-header h2 span{
-  color:#1f6f8b;
-}
-
-.bo-header p{
-  max-width:820px;
-  margin:auto;
-  font-size:18px;
-  line-height:1.75;
-  color:#475569;
-}
-
-/* GRID */
-.bo-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:28px;
-}
-
-/* CARD */
-.bo-card{
-  background:#ffffff;
-  padding:34px 30px;
-  border-radius:14px;
-  box-shadow:0 20px 48px rgba(15,23,42,0.08);
-  position:relative;
-  transition:0.3s ease;
-}
-
-.bo-card:hover{
-  transform:translateY(-6px);
-}
-
-/* TOP ACCENT */
-.bo-card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:5px;
-  background:linear-gradient(90deg,#1f6f8b,#6fb1d6);
-  border-radius:14px 14px 0 0;
-}
-
-/* ICON */
-.bo-icon{
-  font-size:28px;
-  margin-bottom:16px;
-  color:#1f6f8b;
-}
-
-/* TITLE */
-.bo-card h3{
-  font-size:20px;
-  font-weight:700;
-  margin-bottom:12px;
-  color:#0f172a;
-}
-
-/* TEXT */
-.bo-card p{
-  font-size:16.5px;
-  line-height:1.7;
-  color:#475569;
-}
-
-/* ===== HIGHLIGHT STRIP ===== */
-.bo-highlight{
-  margin-top:70px;
-  background:linear-gradient(135deg,#0b4f6c,#1f6f8b);
-  color:#ffffff;
-  padding:46px;
-  border-radius:18px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:36px;
-  text-align:center;
-}
-
-.bo-highlight strong{
-  font-size:32px;
-  display:block;
-  margin-bottom:6px;
-}
-
-.bo-highlight span{
-  font-size:15px;
-  color:#dbeef7;
-}
-
-/* ===== MOBILE ===== */
-@media(max-width:900px){
-  .business-overview{
-    padding:90px 6%;
-  }
-
-  .bo-header h2{
-    font-size:34px;
-  }
-
-  .bo-grid{
-    grid-template-columns:1fr;
-  }
-
-  .bo-highlight{
-    grid-template-columns:1fr;
-    gap:26px;
-    padding:36px 28px;
-  }
-}
-</style>
-
-<section class="business-overview" id="overview">
-  <div class="bo-wrap">
+  <div class="bo-flow-inner">
 
     <!-- HEADER -->
-    <div class="bo-header">
-      <span class="bo-tag">BUSINESS OVERVIEW</span>
+    <div class="bo-flow-header">
+      <span class="bo-flow-tag">BUSINESS OVERVIEW</span>
       <h2>
         Transforming Retail Operations with<br>
         <span>Predictive AI Intelligence</span>
@@ -1334,21 +1254,21 @@ animate();
       </p>
     </div>
 
-    <!-- GRID -->
-    <div class="bo-grid">
+    <!-- FLOW -->
+    <div class="bo-flow-track">
 
-      <div class="bo-card">
-        <div class="bo-icon">📉</div>
+      <div class="bo-flow-step">
+        <div class="bo-flow-dot"></div>
         <h3>The Problem</h3>
         <p>
           UK retailers lose billions annually due to food waste,
           inaccurate demand forecasting, rigid pricing,
-          and late decision-making at store level.
+          and delayed store-level decisions.
         </p>
       </div>
 
-      <div class="bo-card">
-        <div class="bo-icon">🤖</div>
+      <div class="bo-flow-step">
+        <div class="bo-flow-dot"></div>
         <h3>The Solution</h3>
         <p>
           RetailInsight AI predicts waste risk up to 72 hours in advance
@@ -1357,9 +1277,9 @@ animate();
         </p>
       </div>
 
-      <div class="bo-card">
-        <div class="bo-icon">🛡️</div>
-        <h3>Privacy & Compliance</h3>
+      <div class="bo-flow-step">
+        <div class="bo-flow-dot"></div>
+        <h3>Privacy & Trust</h3>
         <p>
           Built using federated learning and explainable models,
           the platform protects sensitive retail data
@@ -1367,13 +1287,13 @@ animate();
         </p>
       </div>
 
-      <div class="bo-card">
-        <div class="bo-icon">📈</div>
+      <div class="bo-flow-step">
+        <div class="bo-flow-dot"></div>
         <h3>Commercial Impact</h3>
         <p>
           Retailers benefit from reduced waste,
-          improved margins, operational efficiency,
-          and a scalable AI platform ready for multi-store rollout.
+          stronger margins, operational efficiency,
+          and scalable multi-store deployment.
         </p>
       </div>
 
@@ -1382,10 +1302,145 @@ animate();
   </div>
 </section>
 
-<script>
-console.log("Business Overview section loaded – RetailInsight AI");
-</script>
+<style>
+:root{
+  --teal:#4fd1c5;
+  --dark:#0f172a;
+  --text:#475569;
+  --light:#f8fbfe;
+}
 
+/* ===== SECTION ===== */
+.bo-flow{
+  padding:130px 8%;
+  background:linear-gradient(180deg,#f8fbfe,#eefaf8);
+}
+
+.bo-flow-inner{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* HEADER */
+.bo-flow-header{
+  text-align:center;
+  max-width:900px;
+  margin:0 auto 90px;
+}
+
+.bo-flow-tag{
+  display:inline-block;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1.6px;
+  color:var(--teal);
+  margin-bottom:16px;
+}
+
+.bo-flow-header h2{
+  font-size:44px;
+  font-weight:800;
+  color:var(--dark);
+  line-height:1.2;
+  margin-bottom:20px;
+}
+
+.bo-flow-header h2 span{
+  color:var(--teal);
+}
+
+.bo-flow-header p{
+  font-size:18px;
+  line-height:1.75;
+  color:var(--text);
+}
+
+/* ===== FLOW TRACK ===== */
+.bo-flow-track{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:48px;
+  position:relative;
+}
+
+/* CONNECTING LINE */
+.bo-flow-track::before{
+  content:"";
+  position:absolute;
+  top:18px;
+  left:0;
+  right:0;
+  height:2px;
+  background:linear-gradient(90deg,#9ff0e6,var(--teal));
+  opacity:.55;
+}
+
+/* STEP */
+.bo-flow-step{
+  position:relative;
+  padding-top:42px;
+}
+
+/* DOT */
+.bo-flow-dot{
+  width:14px;
+  height:14px;
+  background:var(--teal);
+  border-radius:50%;
+  position:absolute;
+  top:11px;
+  left:0;
+  box-shadow:0 0 0 6px rgba(79,209,197,0.35);
+}
+
+/* TEXT */
+.bo-flow-step h3{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:12px;
+  color:var(--dark);
+}
+
+.bo-flow-step p{
+  font-size:16.5px;
+  line-height:1.7;
+  color:var(--text);
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+  .bo-flow{
+    padding:100px 6%;
+  }
+
+  .bo-flow-header h2{
+    font-size:34px;
+  }
+
+  .bo-flow-track{
+    grid-template-columns:1fr;
+    gap:56px;
+  }
+
+  .bo-flow-track::before{
+    top:0;
+    left:6px;
+    width:2px;
+    height:100%;
+    background:linear-gradient(180deg,#9ff0e6,var(--teal));
+  }
+
+  .bo-flow-step{
+    padding-left:28px;
+    padding-top:0;
+  }
+
+  .bo-flow-dot{
+    top:4px;
+    left:-6px;
+  }
+}
+</style>
 
 
 <!-- ================= CONTACT SECTION (OPTIMIZED) ================= -->
